@@ -5,18 +5,18 @@ NOTE: Head over to [distribution](distribution) folder and download the [plugin]
 For now, Screenshots should suffice. I need to get to writing the Documentation (necessary?).
 
 #### Transfer site definition
-![Transfer Site definition](https://gitlab.com/varthdader/azure-blog-plugin/raw/master/distribution/azure_transfer_site_sample.JPG)
+![Transfer Site definition](distribution/azure_transfer_site_sample.JPG)
 
 #### File Tracking for SIT - Push
-![File Tracking - SIT Push](https://gitlab.com/varthdader/azure-blog-plugin/raw/master/distribution/azure_SIT_Push_Multipart.JPG)
+![File Tracking - SIT Push](distribution/azure_SIT_Push_Multipart.JPG)
 
 #### Server log for SIT - Push
-![Server Log - SIT Push](https://gitlab.com/varthdader/azure-blog-plugin/raw/master/distribution/azure_SIT_Push_ServerLog.JPG)
+![Server Log - SIT Push](distribution/azure_SIT_Push_ServerLog.JPG)
 
 #### File Tracking for SIT - Pull
-![File Tracking - SIT Pull](https://gitlab.com/varthdader/azure-blog-plugin/raw/master/distribution/azure_SIT_PatternBasedPull.JPG)
+![File Tracking - SIT Pull](distribution/azure_SIT_PatternBasedPull.JPG)
 
 #### Server log for SIT - Pull
-![File Tracking - SIT Push](https://gitlab.com/varthdader/azure-blog-plugin/raw/master/distribution/azure_SIT_PatternBasedPull_ServerLog.JPG)
+![File Tracking - SIT Push](distribution/azure_SIT_PatternBasedPull_ServerLog.JPG)
 
 
