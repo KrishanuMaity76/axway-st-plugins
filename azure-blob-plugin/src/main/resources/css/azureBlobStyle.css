@@ -1,0 +1,12 @@
+div.siteDiv {
+   text-align: left;
+}
+
+#siteTable.cellWidth {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#siteTable.cellLabel {
+    white-space: nowrap;
+}

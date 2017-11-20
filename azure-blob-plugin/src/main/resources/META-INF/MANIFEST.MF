@@ -1,0 +1,5 @@
+Custom-Protocol: azure-blob
+Protocol-Label: Azure Storage
+Custom-UI: azureBlobSite.html
+Custom-Site: com.axway.pct.st.plugins.azure.storage.site.AzureBlobStorageSite
+Class-Path: azure-blob-plugin/lib/azure-storage-6.1.0.jar azure-blob-plugin/lib/azure-keyvault-core-0.8.0.jar azure-blob-plugin/lib/commons-lang3-3.7.jar

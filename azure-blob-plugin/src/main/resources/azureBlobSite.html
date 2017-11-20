@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<link rel="stylesheet" type="text/css" href="/coreadmin/servlet/pluginContent/css/azureBlobStyle.css?pluginName=azure-blob" />
+<title>Azure Storage Transfer Plugin</title>
+</head>
+<body>
+	<script src="/coreadmin/servlet/pluginContent/jscript/azureBlobScript.js?pluginName=azure-blob" />
+	<div class="siteDiv">
+		<img src="/coreadmin/servlet/pluginContent/images/azure-storage-blob-logo.png?pluginName=azure-blob" />
+		<b>Azure Storage Configuration</b>
+	</div>
+	<br/>
+	<table id="siteTable" border="0" cellpadding="1" cellspacing="0">
+		<tr>
+				<td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+		</tr>
+		<tr>
+            <td colspan="2"><b>Storage Credentials:</b></td>
+		</tr>
+		<tr>
+				<td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+		</tr>
+		<tr>
+				<td class="cellLabel" style="padding-left: 50px;"><label for="azureAccountName">Account Name:*</label></td>
+				<td><input id="azureAccountName" class="default-input" size="40" name="azureAccountName" value="" type="text"/></td>
+		</tr>
+		<tr>
+				<td class="cellLabel" style="padding-left: 50px;"><label for="azureAccountKey">Account Key:*</label></td>
+				<td><input id="azureAccountKey" class="default-input" size="60" name="azureAccountKey" value="" type="password"/></td>
+		</tr>
+		<tr>
+				<td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+		</tr>
+		<!-- START SITE SETTINGS -->
+		<tr>
+				<td colspan="2"><b>Site Settings:</b></td>
+		</tr>
+		<tr>
+				<td class="cellLabel" style="padding-left: 50px;"><label for="azureContainer">Container:*</label></td>
+				<td><input id="azureContainer" class="template-input" size="40" name="azureContainer" value="" type="text"/></td>
+		</tr>
+		<tr>
+				<td class="cellLabel" style="padding-left: 50px;">&nbsp;&nbsp;</td>
+				<td>
+						<label>
+								<input id="azureAutoCreateContainerCheck" type="checkbox" name="azureAutoCreateContainerCheck" value="" />
+								<span>Autocreate Container on upload if it doesn't exist</span>
+						</label>
+				</td>
+		</tr>
+		<tr>
+				<td class="cellLabel" style="padding-left: 50px;"><label for="azureNetworkZone">Network Zone:*</label></td>
+				<td>
+						<div id="azureNetworkZoneDesc" class="contextual-help"
+								 style="vertical-align: middle">
+								 <select id="azureNetworkZone" name="azureNetworkZone" />
+								 <a class="modern-iconhelp" data-content-id="azureNetworkZoneDiv"
+										 title="Open contextual help" tabIndex="-1" href="#"><span>?</span></a>
+								 <div class="help-dialog hidden">
+										 <div class="dialog-header" style="height: 1px;">
+												 <a class="btn-close" href="#p">x</a>
+										 </div>
+										 <div class="dialog-content"></div>
+								 </div>
+						 </div>
+						 <div id="azureNetworkZoneDiv" class="hidden">
+								 <p>Azure Blob Storage connector only supports HTTP proxy type.</p>
+								 <p>If the selected Network Zone does not have an HTTP Proxy configured, it would be ignored.</p>
+						 </div>
+				</td>
+		</tr>
+		<tr>
+		<td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+		</tr>
+		<!-- END SITE SETTINGS -->
+		<!-- START TRANSFER SETTINGS -->
+		<tr>
+				<td colspan="2"><b>Transfer Settings:</b></td>
+		</tr>
+		<tr>
+        <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+    </tr>
+    <tr>
+	      <td class="padding-10" colspan="2">
+			<!-- START DOWNLOAD SETTINGS -->
+			<fieldset>
+	              <legend>Download settings</legend>
+	              <table border="0" cellpadding="1" cellspacing="0">
+	                  <tr>
+	                      <td class="cellLabel"><label for="azureDownloadObjectKey">Download object key / folder:</label></td>
+	                      <td class="cellWidth"><input id="azureDownloadObjectKey" class="template-input cellWidth" type="text" size="40" name="azureDownloadObjectKey" value=""/></td>
+	                      <td>
+	                          <div class="contextual-help">
+	                              <a class="modern-iconhelp" title="Open pattern help"
+	                                  data-content-id="download-object-key-help-content"
+	                                  href="#"><span>?</span></a>
+
+	                              <div class="help-dialog hidden">
+	                                  <div class="dialog-header">
+	                                      <span>Download object key / folder Help</span><a
+	                                          class="btn-close" href="#p">x</a>
+	                                  </div>
+	                                  <div class="dialog-content"></div>
+	                              </div>
+	                          </div>
+	                          <div id="download-object-key-help-content" class="hidden">
+	                              <p> If the specified object ID corresponds to an Azure folder, the
+	                                  contents of that folder will be downloaded recursively.</p>
+	                              <p> If the field is left empty, no objects will be downloaded.</p>
+	                              <p>Download object key / folder can be evaluated using expression language.</p>
+	                              <ul>
+	                                  <li>
+	                                      <p>Using it with dates.</p>
+	                                      <p>The download folder will be evaluated using the current
+	                                          date when the transfer site is being executed. For example
+	                                          'folder_20171110'.</p>
+	                                      <p><code>folder_${date("yyyyMMdd")}/</code></p>
+	                                      <a class="use-example" href="#p" data-for="azureDownloadObjectKey">Use example</a>
+	                                  </li>
+	                              </ul>
+	                          </div>
+	                      </td>
+	                  </tr>
+	                  <tr>
+	                      <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+	                  </tr>
+	                  <tr>
+	                      <td colspan="2">
+	                          <fieldset>
+	                              <legend>Pattern settings:</legend>
+	                              <table border="0" cellpadding="1" cellspacing="0">
+	                                  <tr>
+	                                      <td>Pattern Type:</td>
+	                                      <td>
+	                                          <label><input id="patternTypeRegex" type="radio" name="azurePatternType" value="regex" />Regular Expression</label>
+	                                      </td>
+	                                      <td>
+	                                          <label><input id="patternTypeGlob" type="radio" name="azurePatternType" value="glob" />File Globbing</label>
+	                                      </td>
+	                                  </tr>
+	                                  <tr>
+	                                      <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+	                                  </tr>
+	                                  <tr>
+	                                      <td class="cellLabel">
+	                                          <label for="azureDownloadPattern">Download Pattern:</label>
+	                                      </td>
+	                                      <td class="cellWidth" colspan="2">
+	                                          <label>
+	                                              <input id="azureDownloadPattern" class="template-input cellWidth" type="text" size="40" name="azureDownloadPattern"/>
+	                                          </label>
+	                                      </td>
+	                                      <td>
+	                                          <div class="contextual-help">
+	                                              <a class="modern-iconhelp" title="Open pattern help"
+	                                                  data-content-id="download-pattern-custom-help-content"
+	                                                  href="#"><span>?</span></a>
+	                                              <div class="help-dialog hidden">
+	                                                  <div class="dialog-header">
+	                                                      <span>Download Pattern Help</span><a class="btn-close"
+	                                                          href="#p">x</a>
+	                                                  </div>
+	                                                  <div class="dialog-content"></div>
+	                                              </div>
+	                                          </div>
+	                                          <div id="download-pattern-custom-help-content" class="hidden">
+	                                              <p>
+	                                                  Pattern matching expression supports <code>"glob"</code> and <code>"regexp"</code> syntaxes.
+	                                              </p>
+	                                              <p>
+	                                                  When the pattern type is "<code>File Globbing</code>" then the <code>String</code>
+	                                                  representation of the filename is matched using a limited
+	                                                  pattern language that resembles regular expressions but with a
+	                                                  simpler syntax. For example:
+	                                              </p>
+	                                              <ul>
+	                                                  <li>Matches files ending in <code>.xml</code>
+	                                                      <p><code>*.xml</code></p>
+	                                                      <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeGlob').checked = true;">Use example</a>
+	                                                  </li>
+	                                                  <li>Matches file names starting with <code>foo.</code>
+	                                                      that have a double character extension
+	                                                      <p><code>foo.??</code></p>
+	                                                      <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeGlob').checked = true;">Use example</a>
+	                                                  </li>
+	                                                  <li>Matches file names ending in .1,.2,.3,.4,.5,.6,.7,.8,.9,.0
+	                                                      <p><code>*.[0-9]</code></p>
+	                                                      <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeGlob').checked = true;">Use example</a>
+	                                                  </li>
+	                                                  <li>Matches file names having a single character extension different from 1,2,3,4,5,6,7,8,9,0
+	                                                      <p><code>*.[^0-9]</code></p>
+	                                                      <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeGlob').checked = true;">Use example</a>
+	                                                  </li>
+	                                              </ul>
+	                                              <p>
+	                                                  When the syntax is "<code>Regular Expression</code>" then the <code>String</code>
+	                                                  representation of the filename is matched against a Perl5.003
+	                                                  regular expressions. Perl5 extended regular expressions are also supported. For example:
+	                                                  <ul>
+	                                                      <li>Matches files ending in <code>.xml</code> or <code>.txt</code>
+	                                                          <p><code>.*\.(xml|txt)</code></p>
+	                                                          <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeRegex').checked = true;">Use example</a>
+	                                                      </li>
+	                                                      <li>Case insensitive match of <code>data.xml</code> file
+	                                                          <p><code>(?i)data\.xml</code></p>
+	                                                          <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeRegex').checked = true;">Use example</a>
+	                                                      </li>
+	                                                  </ul>
+	                                              </p>
+	                                              <p>Download pattern is evaluated using expression language.
+	                                              </p>
+	                                              <ul>
+	                                                  <li>
+	                                                      <p>Using it together with 'File Globbing' Pattern Type checked.</p>
+	                                                      <p>The download pattern will be evaluated using the
+	                                                          current date when the transfer site is being executed. For
+	                                                          example '*_20171110.txt'. This will match all files ending
+	                                                          with '_20171110.txt'.</p>
+	                                                      <p><code>*_${date("yyyyMMdd")}.txt</code></p>
+	                                                      <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeGlob').checked = true;">Use example</a>
+	                                                  </li>
+	                                                  <li>
+	                                                      <p>Using it together with 'Regular Expression' Pattern Type checked.</p>
+	                                                      <p>The download pattern will be evaluated using the
+	                                                          current date when the transfer site is being executed. For
+	                                                          example '[a-z]*_20171110.txt'. This will match all files
+	                                                          starting with any combination of letters from 'a' to 'z' and
+	                                                          ending with '_20171110.txt'.</p>
+	                                                      <p> <code>[a-z]*_${date("yyyyMMdd")}.txt</code></p>
+	                                                      <a class="use-example" href="#p" data-for="azureDownloadPattern" onClick="document.getElementById('patternTypeRegex').checked = true;">Use example</a>
+	                                                  </li>
+	                                              </ul>
+	                                          </div>
+	                                      </td>
+	                                  </tr>
+	                              </table>
+	                          </fieldset>
+	                      </td>
+	                  </tr>
+	                  <tr>
+	                      <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+	                  </tr>
+	<tr>
+        <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+    </tr>
+    <!-- START UPLOAD SETTINGS -->
+    <tr>
+        <td class="padding-10" colspan="2">
+            <fieldset>
+                <legend>Upload settings</legend>
+                <table border="0" cellpadding="1" cellspacing="0">
+                    <tr>
+                        <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+                    </tr>
+										<tr>
+                            <td class="cellLabel"><label for="azureUploadDestination">Upload destination:</label></td>
+                            <td class="cellWidth"><input id="azureUploadDestination" class="template-input cellWidth" size="40" name="azureUploadDestination" value="" type="text"/></td>
+                            <td>
+                                <div class="contextual-help">
+                                    <a class="modern-iconhelp" title="Open pattern help"
+                                        data-content-id="upload-object-key-help-content"
+                                        href="#"><span>?</span></a>
+                                    <div class="help-dialog hidden">
+                                        <div class="dialog-header">
+                                            <span>Upload Prefix Help</span><a class="btn-close" href="#p">x</a>
+                                        </div>
+                                        <div class="dialog-content"></div>
+                                    </div>
+                                </div>
+                                <div id="upload-object-key-help-content" class="hidden">
+                                    <p>
+                                        â€œUpload destinationâ€� should represents Azure Storage directory, consider that
+                                        forward slash "/", which is the Azure directory
+                                        identification symbol, is automatically appended from the bucket.
+                                        Path should look like this: "directory1/directory2/.../directoryN/".</p>
+                                        <p> If â€œUpload destinationâ€� is not specified, the file will be uploaded to
+                                        container at the root location 'directory'.
+                                    </p>
+                                    <p>Available environment variables:</p>
+                                    <ul>
+                                        <li><code>${site.target}</code></li>
+																				<li><code>${site.accountName}</code></li>
+                                    </ul>
+                                    <p>Examples:</p>
+                                    <ul>
+                                        <li>
+                                            <p><code>folder/${date("dd.MM.yyyy")}/directory/</code></p>
+                                            <a class="use-example" href="#p" data-for="azureUploadDestination">Use example</a>
+                                        </li>
+                                        <li>
+                                            <p><code>folder/${site.target}/directory/</code></p>
+                                            <a class="use-example" href="#p" data-for="azureUploadDestination">Use example</a>
+                                        </li>
+																				<li>
+                                            <p><code>folder/${site.accountName}/folder/</code></p>
+                                            <a class="use-example" href="#p" data-for="azureUploadDestination">Use example</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="cellLabel"><label for="azureUploadMode">Upload Mode:</label></td>
+                        <td align="left"><select id="azureUploadMode" name="azureUploadMode">
+                                <option value="auto">Auto detect</option>
+                                <option value="single">Blob</option>
+                                <option value="multipart">Block List</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+                    </tr>
+                    <tr>
+                        <td class="cellLabel"><div><label for="azureStorageMetadata">Azure Storage Metadata:<div> <i>(key=value) pairs</i></div></label></div></td>
+                        <td class="cellLabel">
+                            <textarea id="azureStorageMetadata" class="template-input cellWidth" name="azureStorageMetadata" rows="3"></textarea>
+                        </td>
+                        <td class="cellLabel">
+                            <div id="metadataAdvancedExpressionEnabledDesc" class="contextual-help"
+                                style="vertical-align: middle">
+                                <a  class="modern-iconhelp" data-content-id="metadataAdvancedExpressionEnabledDiv"
+                                    title="Open contextual help" tabIndex="-1" href="#"><span>?</span></a>
+                                <div class="help-dialog hidden">
+                                    <div class="dialog-header" style="height: 1px;">
+                                        <a class="btn-close" href="#p">x</a>
+                                    </div>
+                                    <div class="dialog-content"></div>
+                                </div>
+                            </div>
+                            <div id="metadataAdvancedExpressionEnabledDiv" class="hidden">
+                                <p>System defined metadata is evaluated using expression language.</p>
+                                <ul>
+                                    <li>
+                                        <p>Setting server side encryption.</p>
+                                        <p><code>x-amz-server-side-encryption=AES256</code></p>
+                                        <a class="use-example" href="#p" data-for="azureStorageMetadata">Use example</a>
+                                    </li>
+                                    <li>
+                                        <p>Setting Content Type.</p>
+                                        <p><code>Content-Type=text/html; charset=utf-8</code></p>
+                                        <a class="use-example" href="#p" data-for="azureStorageMetadata">Use example</a>
+                                    </li>
+                                    <li>
+                                        <p>Setting Cache Control.</p>
+                                        <p><code>Cache-Control=max-age=(seconds)</code></p>
+                                        <a class="use-example" href="#p" data-for="azureStorageMetadata">Use example</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><img src="/coreadmin/images/cleardot.gif" height="5" width="1" /></td>
+                    </tr>
+                    <tr>
+                        <td class="cellLabel"><div><label for="azureCustomMetadata">User defined metadata:<div> <i>(key=value) pairs</i></div></label></div></td>
+                        <td class="cellLabel">
+                            <textarea id="azureCustomMetadata" class="template-input cellWidth" name="azureCustomMetadata" rows="3"></textarea>
+                        </td>
+                        <td class="cellLabel">
+                            <div id="userMetadataAdvancedExpressionEnabledDesc"  class="contextual-help"
+                                style="vertical-align: middle">
+                                <a class="modern-iconhelp" data-content-id="userMetadataAdvancedExpressionEnabledDiv"
+                                    title="Open contextual help" tabIndex="-1" href="#"><span>?</span></a>
+                                <div class="help-dialog hidden">
+                                    <div class="dialog-header" style="height: 1px;">
+                                        <a class="btn-close" href="#p">x</a>
+                                    </div>
+                                    <div class="dialog-content"></div>
+                                </div>
+                            </div>
+                            <div id="userMetadataAdvancedExpressionEnabledDiv" class="hidden">
+                                <p>User defined metadata is evaluated using expression language.</p>
+                                <ul>
+                                    <li>
+                                        <p>Using it target file name.</p>
+                                        <p>The User defined metadata will be evaluated using the
+                                            target file name when the transfer site is being executed.</p>
+                                        <p><code>key=${ts.target}</code></p>
+                                        <a class="use-example" href="#p" data-for="azureCustomMetadata">Use example</a>
+                                    </li>
+                                    <li>
+                                        <p>Using it with dates.</p>
+                                        <p>The User defined metadata will be evaluated using the
+                                            current date when the transfer site is being executed.</p>
+                                        <p><code>key=${date("dd.MM.yyyy")}</code></p>
+                                        <a class="use-example" href="#p" data-for="azureCustomMetadata">Use example</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </td>
+    </tr>
+        <!-- END UPLOAD SETTINGS -->
+        <!-- END TRANSFER SETTINGS -->
+	</table>
+</body>
+</html>
