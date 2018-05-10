@@ -3,4 +3,5 @@ Plugins for Axway SecureTransport using SecureTransport SPI. Read the docs ![her
 
 * Azure Blob Storage
   * Application pickup, and Delivery from SecureTransport
-  * ![source](azure-blob-plugin), ![dist](azure-blob-plugin/distribution/azure-blob-plugin.tar)
+    * [source](azure-blob-plugin), 
+    * [dist](azure-blob-plugin/distribution/azure-blob-plugin.tar)
